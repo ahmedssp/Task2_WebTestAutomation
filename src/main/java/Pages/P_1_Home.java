@@ -1,6 +1,8 @@
 package Pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -19,6 +21,14 @@ public class P_1_Home {
     public P_2_SearchResult Press_search_botom() {
 
         waitf().until(ExpectedConditions.visibilityOfElementLocated(click_Search_filed));
+        try {
+            Alert alert = d.switchTo().alert();
+            String alertText = alert.getText();
+            System.out.println("Alert data: " + alertText);
+            alert.accept();
+        } catch (NoAlertPresentException e) {
+            e.printStackTrace();
+        }
         d.findElement(click_Search_filed).click();
         return new P_2_SearchResult(d);
     }
