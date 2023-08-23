@@ -12,7 +12,7 @@
         
         - 5-Validate the results obtained.
         
-              - a- validate if the number of results equals the number of products
+              - a- Validate if the number of results equals the number of products
               
               - b-validate if all element in the results contains the search keyword
               
