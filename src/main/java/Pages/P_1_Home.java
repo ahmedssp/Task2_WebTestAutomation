@@ -21,6 +21,9 @@ public class P_1_Home {
     public P_2_SearchResult Press_search_botom() {
 
         waitf().until(ExpectedConditions.visibilityOfElementLocated(click_Search_filed));
+       
+        d.findElement(click_Search_filed).click();
+
         try {
             Alert alert = d.switchTo().alert();
             String alertText = alert.getText();
@@ -29,7 +32,6 @@ public class P_1_Home {
         } catch (NoAlertPresentException e) {
             e.printStackTrace();
         }
-        d.findElement(click_Search_filed).click();
         return new P_2_SearchResult(d);
     }
     public boolean Assertion_Current_On_Homepage() {
