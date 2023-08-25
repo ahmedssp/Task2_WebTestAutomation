@@ -5,11 +5,9 @@ import Pages.P_2_SearchResult;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 public class T1 extends Setup {
-
     @Test(dataProvider = "exceldata",dataProviderClass = apachi_POI.class)
-    public void Test1(String productname,String search_keyWord) throws InterruptedException {
+    public void Test1(String productname,String search_keyWord1,String search_keyWord2) throws InterruptedException {
         Reporter.log("________________Start testcase__________");
         //1- Instansiate soft assertion
         SoftAssert ass = new SoftAssert();
@@ -25,10 +23,9 @@ public class T1 extends Setup {
                 //a- validate if number pf resulst equals to number of products
                  ass.assertTrue( P2_Search_Result.assertion_result_count());
                 //b-validate if all element in results contains the search keyword
-                ass.assertTrue( P2_Search_Result.assertion_result_contains(search_keyWord));
+                ass.assertTrue( P2_Search_Result.assertion_result_contains(search_keyWord1,search_keyWord2));
         //Print/log the number of obtained search results. and if not contain keySearch Word : false
-        Reporter.log(P2_Search_Result.Print_log_results(search_keyWord));
-
+        Reporter.log(P2_Search_Result.Print_log_results(search_keyWord1,search_keyWord2));
         Reporter.log("_________end testcase___________");
         ass.assertAll();
 }

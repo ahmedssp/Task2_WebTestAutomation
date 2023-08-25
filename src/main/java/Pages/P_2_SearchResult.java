@@ -30,7 +30,7 @@ public class P_2_SearchResult {
 //        System.out.println(d.findElements(Search_results_fileds).size()+"___________>1");
         if(d.findElements(Search_results_fileds).size()==Integer.parseInt(d.findElement(result_count).getText())){return true;} else {return false;}
     }
-    public boolean assertion_result_contains(String search_keyWord) throws InterruptedException {
+    public boolean assertion_result_contains(String search_keyWord1,String search_keyWord2) throws InterruptedException {
 //       //iterate webelement for while loop
 //        Iterator<WebElement> variable = product_list.iterator();
         Boolean x=true;
@@ -43,16 +43,18 @@ public class P_2_SearchResult {
         for (int a=0;a<= product_list.size(); a++) {
 //            System.out.println(product_list.get(a).getText().toLowerCase());
 //            System.out.println(product_list.get(a).getText().toLowerCase().contains("mazda"))
-            if(!product_list.get(a).getText().toLowerCase().contains(search_keyWord)){x=false;break;}else {x=true;}
+            if(!product_list.get(a).getText().toLowerCase().contains(search_keyWord1)){x=false;break;}
+            else if(!product_list.get(a).getText().toLowerCase().contains(search_keyWord2)){x=false;break;}
+            else  {x=true;}
             Thread.sleep(100);
         }
         return x;
     }
-    public String Print_log_results(String searching_keyWord ) throws InterruptedException {
+    public String Print_log_results(String searching_keyWord1,String searching_keyWord2 ) throws InterruptedException {
 
         ArrayList<String> productlist=new  ArrayList<>();
         for (int a=0;a< product_list.size(); a++) {
-            productlist.add(product_list.get(a).getText().toLowerCase()+" : "+product_list.get(a).getText().toLowerCase().contains(searching_keyWord)+"\n");
+            productlist.add(product_list.get(a).getText().toLowerCase()+" : "+product_list.get(a).getText().toLowerCase().contains(searching_keyWord1)+"(1) "+" : "+product_list.get(a).getText().toLowerCase().contains(searching_keyWord2)+"(1) ");
             Thread.sleep(100);
         }
         return String.valueOf(productlist).replace(",","\n").replace("[","").replace("]","");
